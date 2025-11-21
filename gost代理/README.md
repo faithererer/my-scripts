@@ -9,16 +9,6 @@
 
 ### 使用方法
 
-1.  **下载并运行脚本**（复制以下命令在 VPS 执行）：
-
-<!-- end list -->
-
-```bash
-curl -sS -O https://raw.githubusercontent.com/go-gost/gost/master/install.sh && chmod +x install.sh && ./install.sh
-```
-
-*等一下，官方没有提供这样的一键脚本。请使用我下面为你重写的这个脚本。*
-
 **请在你的 VPS 上执行以下步骤：**
 
 ```
