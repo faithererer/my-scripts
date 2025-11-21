@@ -12,7 +12,7 @@
 **请在你的 VPS 上执行以下步骤：**
 
 ```
-https://raw.githubusercontent.com/faithererer/my-scripts/refs/heads/main/gost%E4%BB%A3%E7%90%86/gost.sh
+bash <(curl -s https://raw.githubusercontent.com/faithererer/my-scripts/refs/heads/main/gost%E4%BB%A3%E7%90%86/gost.sh)
 ```
 
 ### 脚本功能说明
@@ -32,3 +32,45 @@ https://raw.githubusercontent.com/faithererer/my-scripts/refs/heads/main/gost%E4
 # Ubuntu 放行端口 (假设你设置的是 45654)
 ufw allow 45654/tcp
 ```
+
+
+- docker最稳实践,示例
+
+```
+version: '3'
+
+services:
+  # --- 1. 新增：本地转发服务 (Sidecar) ---
+  # 它的作用是把不需要密码的流量，加上密码转发给远程代理
+  proxy_forwarder:
+    image: gogost/gost
+    container_name: local_proxy_sidecar-hawayi
+    restart: always
+    # 监听容器内的 8080 端口，转发给你的远程代理 (带上账号密码)
+    command: "-L :8080 -F http://xx:xx@x.x.com:21016"
+
+  # --- 2. 你的主服务 ---
+  ais2api:
+    container_name: ais2api_hawayi
+    image: image
+    restart: unless-stopped
+    ports:
+      - "8846:7860"
+    env_file:
+      - .env
+    volumes:
+      - ./auth:/app/auth
+    depends_on:
+      - proxy_forwarder # 确保代理先启动
+    
+    # --- 3. 修改代理配置 ---
+    environment:
+      # 指向上面的 sidecar 容器，端口 8080
+      # 注意：这里完全不需要账号密码了！浏览器会非常开心。
+      - HTTP_PROXY=http://local_proxy_sidecar-hawayi:8080
+      - HTTPS_PROXY=http://local_proxy_sidecar-hawayi:8080
+      
+      # 忽略本地地址
+      - NO_PROXY=localhost,127.0.0.1,::1,.local,local_proxy_sidecar-hawayi
+
+      ```
