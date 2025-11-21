@@ -21,16 +21,9 @@ curl -sS -O https://raw.githubusercontent.com/go-gost/gost/master/install.sh && 
 
 **请在你的 VPS 上执行以下步骤：**
 
-1.  创建脚本文件：
-    ```bash
-    nano gost.sh
-    ```
-2.  **粘贴**下面的代码进去。
-3.  保存 (`Ctrl+O`, `Enter`) 并退出 (`Ctrl+X`)。
-4.  赋予权限并运行：
-    ```bash
-    chmod +x gost.sh && ./gost.sh
-    ```
+```
+https://raw.githubusercontent.com/faithererer/my-scripts/refs/heads/main/gost%E4%BB%A3%E7%90%86/gost.sh
+```
 
 ### 脚本功能说明
 
