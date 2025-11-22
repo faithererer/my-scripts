@@ -245,7 +245,7 @@ show_menu() {
     clear
     echo -e "==============================================="
     echo -e "    Gost v3 一键管理脚本 (IPv6 优化版)"
-    echo -e "    ${BLUE}适用于 NAT VPS 环境${PLAIN}"
+    echo -e "    ${BLUE}适合 200MB 小内存机器使用${PLAIN}"
     echo -e "==============================================="
     echo -e "  ${GREEN}1.${PLAIN} 安装 / 重装 Gost"
     echo -e "  ${GREEN}2.${PLAIN} 卸载 Gost"
