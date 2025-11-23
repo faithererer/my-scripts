@@ -15,6 +15,12 @@
 bash <(curl -s https://raw.githubusercontent.com/faithererer/my-scripts/refs/heads/main/gost%E4%BB%A3%E7%90%86/gost.sh)
 ```
 
+- docker等容器环境
+
+```
+bash <(curl -s https://raw.githubusercontent.com/faithererer/my-scripts/refs/heads/main/gost%E4%BB%A3%E7%90%86/gost_vir.sh)
+```
+
 ### 脚本功能说明
 
 1.  **自动架构识别**：脚本会自动判断你是 `x86_64` 还是 `ARM` (aarch64)，这对于很多廉价 VPS (如 Oracle ARM 或一些 NAT 小鸡) 非常重要。
